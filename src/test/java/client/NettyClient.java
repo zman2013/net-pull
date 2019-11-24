@@ -22,6 +22,10 @@ public class NettyClient {
     final ChannelInboundHandlerAdapter handler = new ChannelInboundHandlerAdapter(){
         private Channel channel;
         private boolean schedulerStart;
+
+        /**
+         * When the channel activates, it starts a scheduler to read from channel per 5s.
+         */
         public void channelActive(ChannelHandlerContext ctx) {
             ctx.channel().read();
 

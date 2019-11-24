@@ -30,6 +30,9 @@ public class NettyServer {
 
         private AtomicInteger signal = new AtomicInteger(0);
 
+        /**
+         * when the channel active, it will start a scheduler to write a number into socket per 1s.
+         */
         @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
 
@@ -63,14 +66,6 @@ public class NettyServer {
             }
         }
 
-        /**
-         * Calls {@link ChannelHandlerContext#fireChannelInactive()} to forward
-         * to the next {@link ChannelInboundHandler} in the {@link ChannelPipeline}.
-         * <p>
-         * Sub-classes may override this method to change behavior.
-         *
-         * @param ctx
-         */
         @Override
         public void channelInactive(ChannelHandlerContext ctx) throws Exception {
             channel = null;
