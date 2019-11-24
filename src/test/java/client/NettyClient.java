@@ -38,18 +38,15 @@ public class NettyClient {
                         () -> channel.read(),
                         1, 5, TimeUnit.SECONDS
                 );
-
             }
         }
 
-        public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-            ByteBuf i = (ByteBuf) msg;
-            byte[] buf = new byte[4];
-            i.readBytes(buf);
-
+        public void channelRead(ChannelHandlerContext ctx, Object msg) {
+            ByteBuf buf = (ByteBuf) msg;
+            int signal = buf.readInt();
             System.out.println(new Date()
                     + " received signal: "
-                    + new String(buf, StandardCharsets.UTF_8));
+                    + signal);
 
         }
     };

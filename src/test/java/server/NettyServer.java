@@ -28,18 +28,13 @@ public class NettyServer {
 
         private Channel channel;
 
-        private AtomicInteger signal = new AtomicInteger(0);
+        private int signal;
 
         /**
          * when the channel active, it will start a scheduler to write a number into socket per 1s.
          */
         @Override
         public void channelActive(ChannelHandlerContext ctx) throws Exception {
-
-            ByteBuf b = Unpooled.buffer(4);
-            b.writeInt(signal.getAndIncrement());
-
-            ctx.channel().writeAndFlush(b);
 
             System.out.println("accept client");
 
@@ -49,17 +44,16 @@ public class NettyServer {
                 Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(
                         ()->{
                             if( channel != null ){
-                                ByteBuf b2 = Unpooled.buffer(4);
-                                String buf = String.format("%04d", signal.get());
-                                b2.writeBytes(buf.getBytes(StandardCharsets.UTF_8));
-                                channel.writeAndFlush(b2).addListener((ChannelFutureListener) future -> {
+                                ByteBuf buf = Unpooled.buffer(4);
+                                buf.writeInt(signal);
+                                channel.writeAndFlush(buf).addListener((ChannelFutureListener) future -> {
                                     if(future.isSuccess()){
-                                        System.out.println("write to socket successfully " + signal.getAndIncrement() );
+                                        System.out.println("write to socket successfully " + signal++ );
                                     }else{
                                         System.out.println(new Date()+" write to socket failed " + signal);
                                     }
                                 });
-                                System.out.println(new Date() + " write to socket: " + buf + " channel : " + channel);
+                                System.out.println(new Date() + " write to socket: " + signal + " channel : " + channel);
                             }
                         }, 1, 1, TimeUnit.SECONDS
                 );
