@@ -43,10 +43,16 @@ public class NettyClient {
 
         public void channelRead(ChannelHandlerContext ctx, Object msg) {
             ByteBuf buf = (ByteBuf) msg;
-            int signal = buf.readInt();
-            System.out.println(new Date()
-                    + " received signal: "
-                    + signal);
+
+            int readableBytesSize = buf.readableBytes();
+
+            while( readableBytesSize/4 > 0 ) {
+                int signal = buf.readInt();
+                System.out.println(new Date()
+                        + " received signal: "
+                        + signal);
+                readableBytesSize -= 4;
+            }
 
         }
     };
