@@ -29,30 +29,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zmannotes.event</groupId>
-            <artifactId>event-emitter</artifactId>
-            <version>0.0.4</version>
-        </dependency>
-        <dependency>
             <groupId>com.zmannotes.stream</groupId>
             <artifactId>pull-stream</artifactId>
             <version>0.0.11</version>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.24.Final</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.16</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
         </dependency>
 
         <!-- test -->
