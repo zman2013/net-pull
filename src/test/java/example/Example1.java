@@ -15,10 +15,10 @@ import static com.zman.pull.stream.util.Pull.pull;
 
 public class Example1 {
 
-    @Test
+//    @Test
     public void echoServer() throws IOException {
         new NettyServer()
-                .connectCallback(duplex -> pull(duplex, duplex))
+                .onAccept(duplex -> pull(duplex, duplex))
                 .listen(8081);
 
         System.in.read();
@@ -38,7 +38,7 @@ public class Example1 {
     public void clientAndServer() throws InterruptedException, IOException {
         int port = 8081;
         new NettyServer()
-                .connectCallback(duplex -> pull(duplex, duplex))
+                .onAccept(duplex -> pull(duplex, duplex))
                 .listen(port);
 
         DefaultSource<ByteBuf> source = new DefaultSource<>();

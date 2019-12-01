@@ -87,7 +87,7 @@ public class NettyClientTest {
         }).start();
     }
 
-    @Test
+//    @Test
     public void testClient() throws InterruptedException, IOException {
         System.in.read();
     }
