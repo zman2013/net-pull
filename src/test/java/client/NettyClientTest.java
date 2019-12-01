@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 import static io.netty.channel.ChannelOption.AUTO_READ;
 
 
-public class NettyClient {
+public class NettyClientTest {
 
     final ChannelInboundHandlerAdapter handler = new ChannelInboundHandlerAdapter(){
         private Channel channel;
@@ -57,7 +57,7 @@ public class NettyClient {
         }
     };
 
-    public NettyClient() throws InterruptedException {
+    public NettyClientTest() throws InterruptedException {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         new Thread(()-> {

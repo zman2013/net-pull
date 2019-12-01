@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class NettyServer {
+public class NettyServerTest {
 
     @Sharable
     class ServerHandler extends ChannelInboundHandlerAdapter{
@@ -69,7 +69,7 @@ public class NettyServer {
 
     private ChannelInboundHandlerAdapter serverHandler = new ServerHandler();
 
-    public NettyServer() {
+    public NettyServerTest() {
         new Thread(() -> {
             EventLoopGroup group = new NioEventLoopGroup();
 
@@ -101,7 +101,7 @@ public class NettyServer {
 
     }
 
-    @Test
+//    @Test
     public void startServer() throws IOException {
         System.in.read();
     }
