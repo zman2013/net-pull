@@ -4,7 +4,7 @@
 
     <groupId>com.zmannotes</groupId>
     <artifactId>net-pull</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5-SNAPSHOT</version>
 
     <name>java net-pull</name>
     <description>net-pull implementation in java.</description>
@@ -177,7 +177,7 @@
         <connection>scm:git:git@github.com:zman2013/net-pull.git</connection>
         <developerConnection>scm:git:git@github.com:zman2013/net-pull.git</developerConnection>
         <url>https://github.com/zman2013/net-pull</url>
-        <tag>net-pull-0.0.4</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <profiles>
