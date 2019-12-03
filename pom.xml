@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.zmannotes.stream</groupId>
             <artifactId>pull-stream</artifactId>
-            <version>0.0.12</version>
+            <version>0.0.13</version>
         </dependency>
 
         <!-- test -->
