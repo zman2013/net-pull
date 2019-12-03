@@ -3,14 +3,14 @@
 
 
 # net-pull
-Providing the idiomatic interfaces of the client & server to implement the net pull-stream.
+Providing idiomatic interfaces of the client & server to implement the net pull-stream.
 
 ## dependency
 ```xml
 <dependency>
     <groupId>com.zmannotes</groupId>
     <artifactId>net-pull</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
 </dependency>
 ```
 
@@ -68,9 +68,17 @@ public interface IServer {
 
     /**
      * 有新client接入时，回调callback函数
-     * @param callback  回调函数
+     *
+     * @param callback  回调函数，参数：Integer: 连接唯一id，IDuplex：双工流
      */
-    IServer onAccept(Consumer<IDuplex> callback);
+    IServer onAccept(BiConsumer<Integer, IDuplex> callback);
+
+    /**
+     * 连接断开时回调
+     * @param callback 回调函数，参数为：connectionId 连接唯一id
+     *
+     */
+    IServer onDisconnect(Consumer<Integer> callback);
 
     /**
      * server停止成功时回调

@@ -2,6 +2,7 @@ package com.zman.net.pull;
 
 import com.zman.pull.stream.IDuplex;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public interface IServer {
@@ -19,9 +20,17 @@ public interface IServer {
 
     /**
      * 有新client接入时，回调callback函数
-     * @param callback  回调函数
+     *
+     * @param callback  回调函数，参数：Integer: 连接唯一id，IDuplex：双工流
      */
-    IServer onAccept(Consumer<IDuplex> callback);
+    IServer onAccept(BiConsumer<Integer, IDuplex> callback);
+
+    /**
+     * 连接断开时回调
+     * @param callback 回调函数，参数为：connectionId 连接唯一id
+     *
+     */
+    IServer onDisconnect(Consumer<Integer> callback);
 
     /**
      * server停止成功时回调

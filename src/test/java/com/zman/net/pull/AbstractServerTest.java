@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import static org.mockito.Mockito.times;
@@ -25,13 +26,13 @@ public class AbstractServerTest {
 
         public void close() { onClosedCallback.run(); }
 
-        public void acceptConnect(){ onAcceptCallback.accept(duplex); }
+        public void acceptConnect(){ onAcceptCallback.accept(1, duplex); }
 
         public void throwException(){ onThrowableCallback.accept(throwable);}
     }
 
     @Mock
-    private Consumer<IDuplex> connectCallback;
+    private BiConsumer<Integer, IDuplex> connectCallback;
     @Mock
     private Runnable disconnectCallback;
     @Mock
@@ -48,7 +49,7 @@ public class AbstractServerTest {
         server.throwException();
         server.close();
 
-        verify(connectCallback, times(1)).accept(duplex);
+        verify(connectCallback, times(1)).accept(1, duplex);
         verify(throwableCallback, times(1)).accept(throwable);
         verify(disconnectCallback, times(1)).run();
     }
