@@ -10,7 +10,7 @@ Providing idiomatic interfaces of the client & server to implement the net pull-
 <dependency>
     <groupId>com.zmannotes</groupId>
     <artifactId>net-pull</artifactId>
-    <version>0.0.7</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
