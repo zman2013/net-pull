@@ -10,7 +10,7 @@ public abstract class AbstractServer implements IServer {
     protected BiConsumer<String, IDuplex> onAcceptCallback;
     protected Runnable onClosedCallback;
     protected Consumer<Throwable> onThrowableCallback;
-    protected Consumer<String> onDisconnectedCallback;
+    protected BiConsumer<String, IDuplex> onDisconnectedCallback;
 
     /**
      * 停止server，断开所有连接
@@ -35,7 +35,7 @@ public abstract class AbstractServer implements IServer {
      * @param callback 连接唯一id
      */
     @Override
-    public IServer onDisconnect(Consumer<String> callback) {
+    public IServer onDisconnect(BiConsumer<String, IDuplex> callback) {
         onDisconnectedCallback = callback;
         return this;
     }

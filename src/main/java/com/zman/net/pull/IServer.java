@@ -30,7 +30,7 @@ public interface IServer {
      * @param callback 回调函数，参数为：connectionId 连接唯一id
      *
      */
-    IServer onDisconnect(Consumer<String> callback);
+    IServer onDisconnect(BiConsumer<String, IDuplex> callback);
 
     /**
      * server停止成功时回调
