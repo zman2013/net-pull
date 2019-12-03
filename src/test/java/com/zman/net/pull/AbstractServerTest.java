@@ -26,13 +26,13 @@ public class AbstractServerTest {
 
         public void close() { onClosedCallback.run(); }
 
-        public void acceptConnect(){ onAcceptCallback.accept(1, duplex); }
+        public void acceptConnect(){ onAcceptCallback.accept("connectId", duplex); }
 
         public void throwException(){ onThrowableCallback.accept(throwable);}
     }
 
     @Mock
-    private BiConsumer<Integer, IDuplex> connectCallback;
+    private BiConsumer<String, IDuplex> connectCallback;
     @Mock
     private Runnable disconnectCallback;
     @Mock
@@ -49,7 +49,7 @@ public class AbstractServerTest {
         server.throwException();
         server.close();
 
-        verify(connectCallback, times(1)).accept(1, duplex);
+        verify(connectCallback, times(1)).accept("connectId", duplex);
         verify(throwableCallback, times(1)).accept(throwable);
         verify(disconnectCallback, times(1)).run();
     }

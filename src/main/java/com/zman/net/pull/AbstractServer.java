@@ -7,10 +7,10 @@ import java.util.function.Consumer;
 
 public abstract class AbstractServer implements IServer {
 
-    protected BiConsumer<Integer, IDuplex> onAcceptCallback;
+    protected BiConsumer<String, IDuplex> onAcceptCallback;
     protected Runnable onClosedCallback;
     protected Consumer<Throwable> onThrowableCallback;
-    protected Consumer<Integer> onDisconnectedCallback;
+    protected Consumer<String> onDisconnectedCallback;
 
     /**
      * 停止server，断开所有连接
@@ -24,7 +24,7 @@ public abstract class AbstractServer implements IServer {
      * @param callback 回调函数
      */
     @Override
-    public IServer onAccept(BiConsumer<Integer, IDuplex> callback) {
+    public IServer onAccept(BiConsumer<String, IDuplex> callback) {
         this.onAcceptCallback = callback;
         return this;
     }
@@ -35,7 +35,7 @@ public abstract class AbstractServer implements IServer {
      * @param callback 连接唯一id
      */
     @Override
-    public IServer onDisconnect(Consumer<Integer> callback) {
+    public IServer onDisconnect(Consumer<String> callback) {
         onDisconnectedCallback = callback;
         return this;
     }
