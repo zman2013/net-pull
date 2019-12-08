@@ -1,7 +1,5 @@
 package com.zman.net.pull;
 
-import com.zman.pull.stream.IDuplex;
-import com.zman.pull.stream.impl.DefaultDuplex;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
