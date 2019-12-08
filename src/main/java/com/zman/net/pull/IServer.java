@@ -1,7 +1,5 @@
 package com.zman.net.pull;
 
-import com.zman.pull.stream.IDuplex;
-
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
