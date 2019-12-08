@@ -10,14 +10,14 @@ Providing idiomatic interfaces of the client & server to implement the net pull-
 <dependency>
     <groupId>com.zmannotes</groupId>
     <artifactId>net-pull</artifactId>
-    <version>1.0.0</version>
+    <version>2.1.0</version>
 </dependency>
 ```
 
 ## interfaces
 ### IClient
 ```java
-public interface IClient {
+public interface IClient<T> {
 
     /**
      * 连接目标服务地址
@@ -35,7 +35,7 @@ public interface IClient {
      * 成功连接到server时的回调函数
      * @param callback 回调函数
      */
-    IClient onConnected(Consumer<IDuplex> callback);
+    IClient onConnected(Consumer<T> callback);
 
     /**
      * 连接断开时回调
@@ -71,7 +71,7 @@ public interface IServer {
      *
      * @param callback  回调函数，参数：Integer: 连接唯一id，IDuplex：双工流
      */
-    IServer onAccept(BiConsumer<Integer, IDuplex> callback);
+    IServer onAccept(BiConsumer<Integer, T> callback);
 
     /**
      * 连接断开时回调

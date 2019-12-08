@@ -5,12 +5,12 @@ import com.zman.pull.stream.IDuplex;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public abstract class AbstractServer implements IServer {
+public abstract class AbstractServer<T> implements IServer<T> {
 
-    protected BiConsumer<String, IDuplex> onAcceptCallback;
+    protected BiConsumer<String, T> onAcceptCallback;
     protected Runnable onClosedCallback;
     protected Consumer<Throwable> onThrowableCallback;
-    protected BiConsumer<String, IDuplex> onDisconnectedCallback;
+    protected BiConsumer<String, T> onDisconnectedCallback;
 
     /**
      * 停止server，断开所有连接
@@ -24,7 +24,7 @@ public abstract class AbstractServer implements IServer {
      * @param callback 回调函数
      */
     @Override
-    public IServer onAccept(BiConsumer<String, IDuplex> callback) {
+    public IServer onAccept(BiConsumer<String, T> callback) {
         this.onAcceptCallback = callback;
         return this;
     }
@@ -35,7 +35,7 @@ public abstract class AbstractServer implements IServer {
      * @param callback 连接唯一id
      */
     @Override
-    public IServer onDisconnect(BiConsumer<String, IDuplex> callback) {
+    public IServer onDisconnect(BiConsumer<String, T> callback) {
         onDisconnectedCallback = callback;
         return this;
     }

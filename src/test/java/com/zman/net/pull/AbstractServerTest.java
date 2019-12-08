@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractServerTest {
 
-    private final IDuplex duplex = new DefaultDuplex();
+    private final Object duplex = new Object();
     private final Throwable throwable = new RuntimeException();
 
     class ServerTest extends AbstractServer{
@@ -32,7 +32,7 @@ public class AbstractServerTest {
     }
 
     @Mock
-    private BiConsumer<String, IDuplex> connectCallback;
+    private BiConsumer<String, Object> connectCallback;
     @Mock
     private Runnable disconnectCallback;
     @Mock

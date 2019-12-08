@@ -4,9 +4,9 @@ import com.zman.pull.stream.IDuplex;
 
 import java.util.function.Consumer;
 
-public abstract class AbstractClient implements IClient {
+public abstract class AbstractClient<T> implements IClient<T> {
 
-    protected Consumer<IDuplex> onConnectedCallback;
+    protected Consumer<T> onConnectedCallback;
     protected Runnable onDisconnectedCallback;
     protected Consumer<Throwable> onThrowableCallback;
 
@@ -19,7 +19,7 @@ public abstract class AbstractClient implements IClient {
      * @param callback 回调函数
      */
     @Override
-    public IClient onConnected(Consumer<IDuplex> callback) {
+    public IClient onConnected(Consumer<T> callback) {
         this.onConnectedCallback = callback;
         return this;
     }

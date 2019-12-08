@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractClientTest {
 
-    private final IDuplex duplex = new DefaultDuplex();
+    private final Object duplex = new Object();
     private final RuntimeException exception = new RuntimeException();
 
     class ClientTest extends AbstractClient{
@@ -31,7 +31,7 @@ public class AbstractClientTest {
     }
 
     @Mock
-    private Consumer<IDuplex> connectCallback;
+    private Consumer<Object> connectCallback;
     @Mock
     private Runnable disconnectCallback;
     @Mock

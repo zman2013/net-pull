@@ -5,7 +5,7 @@ import com.zman.pull.stream.IDuplex;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public interface IServer {
+public interface IServer<T> {
 
     /**
      * 启动Server，监听端口
@@ -23,14 +23,14 @@ public interface IServer {
      *
      * @param callback  回调函数，参数：String: 连接唯一id，IDuplex：双工流
      */
-    IServer onAccept(BiConsumer<String, IDuplex> callback);
+    IServer onAccept(BiConsumer<String, T> callback);
 
     /**
      * 连接断开时回调
      * @param callback 回调函数，参数为：connectionId 连接唯一id
      *
      */
-    IServer onDisconnect(BiConsumer<String, IDuplex> callback);
+    IServer onDisconnect(BiConsumer<String, T> callback);
 
     /**
      * server停止成功时回调
