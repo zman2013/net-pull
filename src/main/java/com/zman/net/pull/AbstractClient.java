@@ -1,7 +1,5 @@
 package com.zman.net.pull;
 
-import com.zman.pull.stream.IDuplex;
-
 import java.util.function.Consumer;
 
 public abstract class AbstractClient<T> implements IClient<T> {
