@@ -1,5 +1,7 @@
 package com.zman.net.pull;
 
+import com.zman.pull.stream.IDuplex;
+import com.zman.pull.stream.impl.DefaultDuplex;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,7 +17,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class AbstractServerTest {
 
-    private final Object duplex = new Object();
+    private final IDuplex duplex = new DefaultDuplex();
     private final Throwable throwable = new RuntimeException();
 
     class ServerTest extends AbstractServer{
@@ -30,7 +32,7 @@ public class AbstractServerTest {
     }
 
     @Mock
-    private BiConsumer<String, Object> connectCallback;
+    private BiConsumer<String, IDuplex> connectCallback;
     @Mock
     private Runnable disconnectCallback;
     @Mock

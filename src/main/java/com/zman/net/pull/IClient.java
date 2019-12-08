@@ -1,8 +1,10 @@
 package com.zman.net.pull;
 
+import com.zman.pull.stream.IDuplex;
+
 import java.util.function.Consumer;
 
-public interface IClient<T> {
+public interface IClient {
 
     /**
      * 连接目标服务地址
@@ -20,7 +22,7 @@ public interface IClient<T> {
      * 成功连接到server时的回调函数
      * @param callback 回调函数
      */
-    IClient onConnected(Consumer<T> callback);
+    IClient onConnected(Consumer<IDuplex> callback);
 
     /**
      * 连接断开时回调
